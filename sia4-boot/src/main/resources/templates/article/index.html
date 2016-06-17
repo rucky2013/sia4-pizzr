@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta content="text/html" charset="UTF-8"/>
+<title>Spring boot Contacts</title>
+<link rel="stylesheet" th:href="@{/stylesheet/style.css}"/>
+</head>
+<body>
+	<h2>Spring boot Article List</h2>
+	<form name="article-query-form">
+		<label for="author">作者</label>
+		<input type="text" name="author"/>
+	</form>
+	<a th:href="@{/article/form}">新建</a>
+	<a id="querylink_" href="javascript:void(0);">查询</a>
+	<ul th:each="article : ${articles}">
+		<li>
+			<input type="radio" name="id_" th:value="${article.id}" />
+			<span th:text="${article.author}">Author</span>
+			<span th:text="${article.summary}">Summary</span>
+		</li>
+	</ul>
+	<script th:src="@{/script/jquery.js}"></script>
+	<script>
+		function query() {
+			var author = $("form[name='article-query-form']").find(
+					"input[name='author']").val();
+			if (!author) {
+				alert("查询条件不允许为空");
+			} else {
+				window.location = '/article/'+author;
+			}
+		}
+		$(function() {
+			$("#querylink_").on("click", query);
+		});
+	</script>
+</body>
+</html>

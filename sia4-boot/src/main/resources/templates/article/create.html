@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta content="text/html" charset="UTF-8" />
+<title>Spring boot Contacts</title>
+<link rel="stylesheet" th:href="@{/stylesheet/style.css}" />
+</head>
+<body>
+	<h2>Spring boot Article Form</h2>
+	<form th:action="@{/article}" method="POST" th:object="${article}">
+		<label for="author">作者:</label>
+		<input type="text" th:field="*{author}" />
+		<span th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Author Error</span>
+		<br />
+		<label for="summary">简介:</label>
+		<input type="text" th:field="*{summary}"/>
+		<span th:if="${#fields.hasErrors('summary')}" th:errors="*{summary}">Summary Error</span>
+		<br />
+		<button type="submit">Submit</button>
+	</form>
+	<script th:src="@{/script/jquery.js}"></script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+create table article (id varchar(255) not null, author varchar(255) not null, summary varchar(255), primary key (id));
