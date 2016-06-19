@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta content="text/html" charset="UTF-8" />
+<title>Spring boot User Form</title>
+<link rel="stylesheet" th:href="@{/stylesheet/style.css}" />
+</head>
+<body>
+	<h2>Spring boot Users Form</h2>
+	<form th:action="@{/register}" method="POST" th:object="${registerForm}">
+		<table>
+			<tbody>
+				<tr>
+					<td><label for="username">用户名:</label></td>
+					<td>
+						<input type="text" th:field="*{username}" />
+						<span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">User Error</span>
+					</td>
+					<td><label for="usercode">用户编号:</label></td>
+					<td>
+						<input type="text" th:field="*{usercode}" />
+						<span th:if="${#fields.hasErrors('usercode')}" th:errors="*{usercode}">User Error</span>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="email">电子邮箱:</label></td>
+					<td>
+						<input type="text" th:field="*{email}"/>
+						<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span>
+					</td>
+					<td><label for="mobile">手机号码:</label></td>
+					<td>
+						<input type="text" th:field="*{mobile}"/>
+						<span th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}">Mobile Error</span>
+					</td>
+				</tr>
+				<tr>
+					<td><label for="password">输入密码:</label></td>
+					<td>
+						<input type="text" th:field="*{password}"/>
+						<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
+					</td>
+					<td><label for="confirmPassword">确认密码:</label></td>
+					<td>
+						<input type="text" th:field="*{confirmPassword}"/>
+						<span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">ConfirmPassword Error</span>
+					</td>
+				</tr>
+				<tr>
+					<td align="center" colspan="4">
+						<button type="submit">提交</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
+	<script th:src="@{/script/jquery.js}"></script>
+</body>
+</html>
