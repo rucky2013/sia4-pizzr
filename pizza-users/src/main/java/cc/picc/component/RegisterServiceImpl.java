@@ -2,14 +2,11 @@ package cc.picc.component;
 
 import static javax.transaction.Transactional.TxType.REQUIRED;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
-import static org.apache.commons.lang3.StringUtils.isBlank;
 
 import java.util.List;
 
 import javax.transaction.Transactional;
-import javax.validation.ValidationException;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -25,7 +22,7 @@ import cc.picc.repository.UserCredentialRepository;
 /**
  * 
  * @author Justin
- *
+ * 
  */
 @Transactional(value = SUPPORTS)
 @Component
@@ -47,25 +44,12 @@ public class RegisterServiceImpl implements RegisterService {
 	@Autowired
 	private UserCredentialRepository userCredentialRepo;
 
-	private void ensureValid(RegisterForm registerForm) {
-		// 检查二选一必填项是否正确
-		if (isBlank(registerForm.getEmail()) && isBlank(registerForm.getMobile())) {
-			throw new ValidationException(contactInfoMissingMessage);
-		}
-		// 检查两次输入密码是否一致
-		if (!StringUtils.equals(registerForm.getConfirmPassword(), registerForm.getPassword())) {
-			throw new ValidationException(confirmPasswordNotMatchMessage);
-		}
-	}
-
 	/**
 	 * 
 	 */
 	@Override
 	@Transactional(value = REQUIRED)
 	public UserBasics registerNewUser(RegisterForm registerForm) {
-		ensureValid(registerForm);
-
 		UserBasics userBasics = registerForm.getUserBasics();
 		List<UserContactInfo> uciList = registerForm.getUserContactInfo();
 		UserCredential uc = registerForm.getUserCredential();

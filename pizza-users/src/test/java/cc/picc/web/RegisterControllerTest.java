@@ -7,30 +7,82 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import cc.picc.AppTest;
+import cc.picc.component.RegisterService;
 
-@RunWith(value = SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = { AppTest.class })
+@RunWith(value = MockitoJUnitRunner.class)
+@ContextConfiguration(classes = { RegisterTestContext.class })
 public class RegisterControllerTest {
+
+	@Mock
+	private RegisterService registerService;
 
 	@Test
 	public void testRegisterForm() throws Exception {
-		RegisterController controller = new RegisterController();
+		RegisterController controller = new RegisterController(registerService);
 		MockMvc mockMvc = standaloneSetup(controller).build();
-		mockMvc.perform(get("/register")).andExpect(view().name("users/register-form"));
+		mockMvc.perform(get("/register")).andExpect(
+				view().name("users/register-form"));
 	}
 
+	/**
+	 * 成功通过
+	 * 
+	 * @throws Exception
+	 */
 	@Test
 	public void testRegister() throws Exception {
-		RegisterController controller = new RegisterController();
+		RegisterController controller = new RegisterController(registerService);
 		MockMvc mockMvc = standaloneSetup(controller).build();
-		mockMvc.perform(post("/register").param("username", "alibaba").param("usercode", "2342424234")
-				.param("email", "lijnting@picc.com.cn").param("mobile", "2342424234").param("password", "pass@word1")
-				.param("confirmPassword", "pass@word1")).andExpect(view().name("/users/register-success"));
+		mockMvc.perform(
+				post("/register").param("username", "alibaba")
+						.param("usercode", "2342424234")
+						.param("email", "lijnting@picc.com.cn")
+						.param("mobile", "2342424234")
+						.param("password", "pass@word1")
+						.param("confirmPassword", "pass@word1")).andExpect(
+				view().name("users/register-success"));
 	}
 
+	/**
+	 * 因为密码不匹配返回表单页面
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public void testRegisterFailOnPasswordValidation() throws Exception {
+		RegisterController controller = new RegisterController(registerService);
+		MockMvc mockMvc = standaloneSetup(controller).build();
+		mockMvc.perform(
+				post("/register").param("username", "alibaba")
+						.param("usercode", "2342424234")
+						.param("email", "lijnting@picc.com.cn")
+						.param("mobile", "2342424234")
+						.param("password", "pass@word1")
+						.param("confirmPassword", "pass@word2")).andExpect(
+				view().name("users/register-form"));
+	}
+
+	/**
+	 * 因为email不合规而不通过
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public void testRegisterFailOnEmailValidation() throws Exception {
+		RegisterController controller = new RegisterController(registerService);
+		MockMvc mockMvc = standaloneSetup(controller).build();
+		mockMvc.perform(
+				post("/register").param("username", "alibaba")
+						.param("usercode", "2342424234")
+						.param("email", "lijinitn")
+						.param("mobile", "2342424234")
+						.param("password", "pass@word1")
+						.param("confirmPassword", "pass@word1")).andExpect(
+				view().name("users/register-form"));
+	}
 }

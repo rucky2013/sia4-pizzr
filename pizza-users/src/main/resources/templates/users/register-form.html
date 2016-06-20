@@ -7,6 +7,7 @@
 </head>
 <body>
 	<h2>Spring boot Users Form</h2>
+	<div th:if="${errorMessage!=null}" th:text="${errorMessage}">Error Message</div>
 	<form th:action="@{/register}" method="POST" th:object="${registerForm}">
 		<table>
 			<tbody>
@@ -37,12 +38,12 @@
 				<tr>
 					<td><label for="password">输入密码:</label></td>
 					<td>
-						<input type="text" th:field="*{password}"/>
+						<input type="password" th:field="*{password}"/>
 						<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
 					</td>
 					<td><label for="confirmPassword">确认密码:</label></td>
 					<td>
-						<input type="text" th:field="*{confirmPassword}"/>
+						<input type="password" th:field="*{confirmPassword}"/>
 						<span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">ConfirmPassword Error</span>
 					</td>
 				</tr>

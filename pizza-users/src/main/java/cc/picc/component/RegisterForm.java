@@ -1,5 +1,7 @@
 package cc.picc.component;
 
+import static cc.picc.commons.ContactType.EMAIL_ADDRESS;
+import static cc.picc.commons.ContactType.MOBILE_PHONE;
 import static cc.picc.commons.CredentialType.PASSWORD;
 
 import java.util.ArrayList;
@@ -16,13 +18,14 @@ import org.joda.time.DateTime;
 import cc.picc.entity.UserBasics;
 import cc.picc.entity.UserContactInfo;
 import cc.picc.entity.UserCredential;
-import static cc.picc.commons.ContactType.*;
+import cc.picc.validation.FieldEqualsConstraint;
 
 /**
  * 
  * @author Justin
- *
+ * 
  */
+@FieldEqualsConstraint(targetField = "confirmPassword", compareTo = { "password" }, message = "两次输入的密码不匹配")
 public class RegisterForm {
 
 	@NotNull
@@ -34,8 +37,8 @@ public class RegisterForm {
 	private String mobile;
 
 	@NotNull
-	@Pattern(regexp = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$", message = "请输入有效的邮件地址")
+	@Pattern(regexp = "(^$|^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+			+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$)", message = "请输入有效的邮件地址")
 	private String email;
 
 	@NotNull
@@ -98,9 +101,10 @@ public class RegisterForm {
 
 	@Override
 	public String toString() {
-		return String.format(
-				"RegisterForm [username=%s, usercode=%s, mobile=%s, email=%s, password=%s, confirmPassword=%s]",
-				username, usercode, mobile, email, password, confirmPassword);
+		return String
+				.format("RegisterForm [username=%s, usercode=%s, mobile=%s, email=%s, password=%s, confirmPassword=%s]",
+						username, usercode, mobile, email, password,
+						confirmPassword);
 	}
 
 	public String getUsername() {
