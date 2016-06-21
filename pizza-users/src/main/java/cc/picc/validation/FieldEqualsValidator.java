@@ -15,10 +15,10 @@ import org.slf4j.LoggerFactory;
  * @author lijinting01
  * 
  */
-public class FieldMatchConstraint implements
+public class FieldEqualsValidator implements
 		ConstraintValidator<FieldEqualsConstraint, Object> {
 	private static final Logger logger = LoggerFactory
-			.getLogger(FieldMatchConstraint.class);
+			.getLogger(FieldEqualsValidator.class);
 
 	private String target;
 
@@ -50,6 +50,7 @@ public class FieldMatchConstraint implements
 			// ignores exception
 			logger.error("Exception Occured When Trying To Get Property:",
 					ignore);
+			throw new RuntimeException("Exception Occured When Trying To Get Property", ignore);
 		}
 		return true;
 	}

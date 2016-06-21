@@ -18,9 +18,13 @@ import javax.validation.Payload;
 @Target(TYPE)
 @Retention(RUNTIME)
 @Documented
-@Constraint(validatedBy = { FieldMatchConstraint.class })
+@Constraint(validatedBy = { FieldEqualsValidator.class })
 public @interface FieldEqualsConstraint {
 
+	/**
+	 * 
+	 * @return
+	 */
 	String targetField() default "";
 
 	/**
@@ -41,5 +45,9 @@ public @interface FieldEqualsConstraint {
 	 */
 	Class<?>[] groups() default {};
 
+	/**
+	 * 
+	 * @return
+	 */
 	Class<? extends Payload>[] payload() default {};
 }
