@@ -4,7 +4,6 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
 import javax.validation.Valid;
-import javax.validation.ValidationException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -73,16 +72,10 @@ public class RegisterController {
 			return REGISTERFORM_VIEW_LOCATION;
 		}
 
-		try {
-			UserBasics userBasics = registerService
-					.registerNewUser(registerForm);
-			logger.info("Created A New User Request, User :" + userBasics);
-			model.addAttribute("newUser", userBasics);
-			return REGISTERSUCCESS_VIEW_LOCATION;
-		} catch (ValidationException e) {
-			logger.error(e.toString());
-			model.addAttribute("errorMessage", e.getMessage());
-			return REGISTERFORM_VIEW_LOCATION;
-		}
+		UserBasics userBasics = registerService.registerNewUser(registerForm);
+		logger.info("Created A New User Request, User :" + userBasics);
+		model.addAttribute("newUser", userBasics);
+		return REGISTERSUCCESS_VIEW_LOCATION;
+
 	}
 }
