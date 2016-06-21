@@ -49,8 +49,7 @@ public enum ContactType implements HasValue<String> {
 		return value;
 	}
 
-	@Override
-	public HasValue<String> fromValue(String value) {
+	public static ContactType fromValue(String value) {
 		for (ContactType type : values()) {
 			if (StringUtils.equals(type.getValue(), value))
 				return type;

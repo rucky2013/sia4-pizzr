@@ -1,12 +1,12 @@
 package cc.picc.commons;
 
-import org.apache.commons.lang3.StringUtils;
+import java.util.Objects;
 
 /**
  * 凭据类型
  * 
  * @author Justin
- *
+ * 
  */
 public enum CredentialType implements HasValue<String> {
 	/**
@@ -20,10 +20,9 @@ public enum CredentialType implements HasValue<String> {
 		this.value = value;
 	}
 
-	@Override
-	public HasValue<String> fromValue(String value) {
+	public static CredentialType fromValue(String value) {
 		for (CredentialType type : values()) {
-			if (StringUtils.equals(type.getValue(), value))
+			if (Objects.equals(type.getValue(), value))
 				return type;
 		}
 		throw new IllegalArgumentException("Invalid Input Value" + value);
