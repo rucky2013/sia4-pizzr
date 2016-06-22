@@ -1,5 +1,7 @@
 package cc.picc.web;
 
+import static cc.picc.commons.users.RegisterViewResource.REGISTER_FORM;
+import static cc.picc.commons.users.RegisterViewResource.REGISTER_SUCCESS;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
@@ -26,8 +28,6 @@ import cc.picc.entity.UserBasics;
 @RequestMapping(value = "/register")
 public class RegisterController {
 
-	public static final String REGISTERFORM_VIEW_LOCATION = "users/register-form";
-	public static final String REGISTERSUCCESS_VIEW_LOCATION = "users/register-success";
 	/**
 	 * 
 	 */
@@ -55,7 +55,7 @@ public class RegisterController {
 	@RequestMapping(method = GET)
 	public String registerForm(RegisterForm registerForm) {
 		logger.debug("Show Register Form" + registerForm.toString());
-		return REGISTERFORM_VIEW_LOCATION;
+		return REGISTER_FORM.getName();
 	}
 
 	/**
@@ -69,13 +69,13 @@ public class RegisterController {
 	public String register(@Valid RegisterForm registerForm,
 			BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
-			return REGISTERFORM_VIEW_LOCATION;
+			return REGISTER_FORM.getName();
 		}
 
 		UserBasics userBasics = registerService.registerNewUser(registerForm);
 		logger.info("Created A New User Request, User :" + userBasics);
 		model.addAttribute("newUser", userBasics);
-		return REGISTERSUCCESS_VIEW_LOCATION;
+		return REGISTER_SUCCESS.getName();
 
 	}
 }

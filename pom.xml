@@ -25,6 +25,7 @@
 		<module>sia4-boot</module>
 
 		<module>pizza-users</module>
+		<module>pizza-commons</module>
 	</modules>
 	<dependencyManagement>
 		<dependencies>
