@@ -5,6 +5,7 @@ import static org.hamcrest.collection.IsEmptyCollection.empty;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 
 import java.util.List;
@@ -48,12 +49,18 @@ public class RegisterFormTest {
 		UserBasics user = registerForm.getUserBasics();
 		assertThat(registerForm.getUsername(), is(equalTo(user.getUsername())));
 		assertThat(registerForm.getUsercode(), is(equalTo(user.getUsercode())));
+		// 确保任何情况下不会返回Null值
+		UserBasics possibleNull = registerForm.getUserBasics();
+		assertThat(possibleNull, not(nullValue()));
 	}
 
 	@Test
 	public void testGetUserContactInfo() {
 		List<UserContactInfo> ucis = registerForm.getUserContactInfo();
 		assertThat(ucis, not(empty()));
+		// 确保任何情况下不会返回Null值
+		List<UserContactInfo> ucis2 = new RegisterForm().getUserContactInfo();
+		assertThat(ucis2, not(nullValue()));
 	}
 
 	@Test
@@ -61,6 +68,9 @@ public class RegisterFormTest {
 		UserCredential uc = registerForm.getUserCredential();
 		assertThat(PASSWORD, is(equalTo(uc.getCredentialType())));
 		assertThat(registerForm.getPassword(), is(equalTo(uc.getContent())));
+		// 确保任何情况下不会返回Null值
+		UserCredential pn = new RegisterForm().getUserCredential();
+		assertThat(pn, not(nullValue()));
 	}
 
 }
