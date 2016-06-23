@@ -18,6 +18,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import cc.picc.entity.UserBasics;
 import cc.picc.entity.UserContactInfo;
@@ -52,11 +53,15 @@ public class RegisterServiceImplTest {
 
 	@Mock
 	private RegisterForm registerForm;
+	
+	private BCryptPasswordEncoder pe;
 
 	@SuppressWarnings("unchecked")
 	@Before
 	public void setUp() throws Exception {
 
+		pe = new BCryptPasswordEncoder();
+		
 		when(userBasics.getId()).thenReturn(1001L);
 		when(userBasics.getUsername()).thenReturn("hello");
 		when(userBasics.getUsercode()).thenReturn("kitty");
@@ -65,7 +70,7 @@ public class RegisterServiceImplTest {
 
 		when(userCredential.getId()).thenReturn(10001L);
 		when(userCredential.getCredentialType()).thenReturn(PASSWORD);
-		when(registerForm.getUserCredential()).thenReturn(userCredential);
+		when(registerForm.getUserCredential(pe)).thenReturn(userCredential);
 		when(userCredentialRepo.save(any(UserCredential.class))).thenReturn(
 				userCredential);
 
@@ -82,6 +87,8 @@ public class RegisterServiceImplTest {
 	public void testRegisterNewUser() {
 		RegisterServiceImpl registerService = new RegisterServiceImpl(userRepo,
 				userContactInfoRepo, userCredentialRepo);
+		registerService.setPasswordEncoder(pe);
+
 		UserBasics ub = registerService.registerNewUser(registerForm);
 		assertThat(1001L, is(equalTo(ub.getId())));
 		assertThat("hello", is(equalTo(ub.getUsername())));
