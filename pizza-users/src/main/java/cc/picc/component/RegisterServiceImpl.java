@@ -7,8 +7,8 @@ import static org.springframework.transaction.annotation.Propagation.SUPPORTS;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -29,11 +29,7 @@ import cc.picc.repository.UserCredentialRepository;
 @Transactional(propagation = SUPPORTS, readOnly = true)
 public class RegisterServiceImpl implements RegisterService {
 
-	@Value("contact.info.missing")
-	private static String contactInfoMissingMessage;
-
-	@Value("confirm.password.not.match")
-	private static String confirmPasswordNotMatchMessage;
+	private PasswordEncoder passwordEncoder;
 
 	private UserBasicsRepository userRepo;
 
@@ -49,8 +45,7 @@ public class RegisterServiceImpl implements RegisterService {
 	 * @param userCredentialRepo
 	 */
 	@Autowired
-	public RegisterServiceImpl(UserBasicsRepository userRepo,
-			UserContactInfoRepository userContactInfoRepo,
+	public RegisterServiceImpl(UserBasicsRepository userRepo, UserContactInfoRepository userContactInfoRepo,
 			UserCredentialRepository userCredentialRepo) {
 		this.userRepo = userRepo;
 		this.userContactInfoRepo = userContactInfoRepo;
@@ -65,7 +60,7 @@ public class RegisterServiceImpl implements RegisterService {
 	public UserBasics registerNewUser(RegisterForm registerForm) {
 		UserBasics userBasics = registerForm.getUserBasics();
 		List<UserContactInfo> uciList = registerForm.getUserContactInfo();
-		UserCredential uc = registerForm.getUserCredential();
+		UserCredential uc = registerForm.getUserCredential(passwordEncoder);
 
 		userBasics = userRepo.save(userBasics);
 		Long usrId = userBasics.getId();
@@ -80,4 +75,8 @@ public class RegisterServiceImpl implements RegisterService {
 		return userBasics;
 	}
 
+	@Autowired
+	public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+		this.passwordEncoder = passwordEncoder;
+	}
 }

@@ -14,6 +14,7 @@ import javax.validation.constraints.Size;
 
 import org.apache.commons.lang3.StringUtils;
 import org.joda.time.DateTime;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import cc.picc.entity.UserBasics;
 import cc.picc.entity.UserContactInfo;
@@ -89,9 +90,15 @@ public class RegisterForm {
 		return uci;
 	}
 
-	public UserCredential getUserCredential() {
+	/**
+	 * 获取用户凭证信息
+	 * 
+	 * @param passwordEncoder
+	 * @return
+	 */
+	public UserCredential getUserCredential(PasswordEncoder passwordEncoder) {
 		UserCredential uc = new UserCredential();
-		uc.setContent(getPassword());
+		uc.setContent(getPassword() != null ? passwordEncoder.encode(getPassword()) : null);
 		Date timestamp = DateTime.now().toDate();
 		uc.setCreated(timestamp);
 		uc.setLatestModified(timestamp);
@@ -101,10 +108,9 @@ public class RegisterForm {
 
 	@Override
 	public String toString() {
-		return String
-				.format("RegisterForm [username=%s, usercode=%s, mobile=%s, email=%s, password=%s, confirmPassword=%s]",
-						username, usercode, mobile, email, password,
-						confirmPassword);
+		return String.format(
+				"RegisterForm [username=%s, usercode=%s, mobile=%s, email=%s, password_=%s, confirmPassword_=%s]",
+				username, usercode, mobile, email, password, confirmPassword);
 	}
 
 	public String getUsername() {

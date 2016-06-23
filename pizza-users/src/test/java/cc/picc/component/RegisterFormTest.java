@@ -7,11 +7,13 @@ import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 import cc.picc.entity.UserBasics;
 import cc.picc.entity.UserContactInfo;
@@ -25,6 +27,8 @@ import cc.picc.entity.UserCredential;
 public class RegisterFormTest {
 
 	private RegisterForm registerForm;
+
+	private StandardPasswordEncoder pe;
 
 	private RegisterForm newRegisterForm() {
 		RegisterForm form = new RegisterForm();
@@ -42,6 +46,8 @@ public class RegisterFormTest {
 		if (registerForm == null) {
 			this.registerForm = newRegisterForm();
 		}
+
+		pe = new StandardPasswordEncoder();
 	}
 
 	@Test
@@ -65,11 +71,11 @@ public class RegisterFormTest {
 
 	@Test
 	public void testGetUserCredential() {
-		UserCredential uc = registerForm.getUserCredential();
+		UserCredential uc = registerForm.getUserCredential(pe);
 		assertThat(PASSWORD, is(equalTo(uc.getCredentialType())));
-		assertThat(registerForm.getPassword(), is(equalTo(uc.getContent())));
+		assertTrue(pe.matches(registerForm.getPassword(), (uc.getContent())));
 		// 确保任何情况下不会返回Null值
-		UserCredential pn = new RegisterForm().getUserCredential();
+		UserCredential pn = new RegisterForm().getUserCredential(pe);
 		assertThat(pn, not(nullValue()));
 	}
 
