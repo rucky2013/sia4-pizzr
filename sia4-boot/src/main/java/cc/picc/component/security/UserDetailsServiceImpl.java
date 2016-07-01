@@ -1,5 +1,8 @@
 package cc.picc.component.security;
 
+import static cc.picc.commons.CredentialType.PASSWORD;
+import static org.springframework.transaction.annotation.Propagation.REQUIRED;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,10 +15,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import cc.picc.commons.CredentialType;
 import cc.picc.entity.UserBasics;
 import cc.picc.entity.UserCredential;
 import cc.picc.repository.UserBasicsRepository;
@@ -41,14 +42,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 	 * 
 	 */
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+	@Transactional(propagation = REQUIRED, readOnly = true)
+	public UserDetails loadUserByUsername(String username) {
 		UserBasics ub = userRepo.findByUsername(username, true);
 		if (ub == null) {
 			throw new UsernameNotFoundException(usernameNotfoundMessage);
 		}
 
-		UserCredential uc = userCredentialRepo.findByUserId(CredentialType.PASSWORD, ub.getId());
+		UserCredential uc = userCredentialRepo.findByUserId(PASSWORD, ub.getId());
 
 		List<SimpleGrantedAuthority> list = Arrays.asList(new SimpleGrantedAuthority("USER"),
 				new SimpleGrantedAuthority("ADMIN"));
