@@ -20,6 +20,11 @@ public enum CredentialType implements HasValue<String> {
 		this.value = value;
 	}
 
+	/**
+	 * 
+	 * @param value
+	 * @return
+	 */
 	public static CredentialType fromValue(String value) {
 		for (CredentialType type : values()) {
 			if (Objects.equals(type.getValue(), value))
