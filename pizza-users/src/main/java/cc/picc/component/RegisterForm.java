@@ -43,11 +43,11 @@ public class RegisterForm {
 	private String email;
 
 	@NotNull
-	@Size(min = 8, max = 16)
+	@Size(min = 6, max = 16)
 	private String password;
 
 	@NotNull
-	@Size(min = 8, max = 16)
+	@Size(min = 6, max = 16)
 	private String confirmPassword;
 
 	/**
