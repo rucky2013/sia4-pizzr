@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta content="text/html" charset="UTF-8" />
+<title>Spring boot Register Success</title>
+<link rel="stylesheet" th:href="@{/stylesheet/style.css}" />
+</head>
+<body>
+	<h2>注册成功</h2>
+	<div>
+		<table>
+			<tbody>
+				<tr>
+					<td>用户ID：</td>
+					<td th:text="${newUser.id}">User Id</td>
+					<td>用户名称：</td>
+					<td th:text="${newUser.username}">User Name</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>
