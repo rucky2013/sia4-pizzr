@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>pizza-boot</artifactId>
+	<artifactId>pizzr-boot</artifactId>
 	<packaging>jar</packaging>
 
-	<name>sia4-pizza-boot</name>
+	<name>pizzr-boot</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -14,8 +14,8 @@
 	</properties>
 
 	<parent>
-		<groupId>cc.picc</groupId>
-		<artifactId>sia4-pizza</artifactId>
+		<groupId>cc.pizzr</groupId>
+		<artifactId>sia4-pizzr</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<dependencies>
@@ -100,18 +100,18 @@
 		<!-- 工程内的依赖关系 -->
 
 		<dependency>
-			<groupId>cc.picc</groupId>
-			<artifactId>pizza-users</artifactId>
+			<groupId>cc.pizzr</groupId>
+			<artifactId>pizzr-users</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>cc.picc.commons</groupId>
-			<artifactId>pizza-commons</artifactId>
+			<groupId>cc.pizzr.commons</groupId>
+			<artifactId>pizzr-commons</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>cc.picc</groupId>
-			<artifactId>semantic-plugin</artifactId>
+			<groupId>cc.pizzr</groupId>
+			<artifactId>pizzr-semantic-plugin</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 	</dependencies>

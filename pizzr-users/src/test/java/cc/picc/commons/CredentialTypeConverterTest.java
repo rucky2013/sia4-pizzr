@@ -1,4 +1,4 @@
-package cc.picc.commons;
+package cc.pizzr.commons;
 
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;

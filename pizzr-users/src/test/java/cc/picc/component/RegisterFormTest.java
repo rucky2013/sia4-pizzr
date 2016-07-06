@@ -1,4 +1,4 @@
-package cc.picc.component;
+package cc.pizzr.component;
 
 import static cc.pizzr.commons.CredentialType.PASSWORD;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
@@ -35,7 +35,7 @@ public class RegisterFormTest {
 		RegisterForm form = new RegisterForm();
 		form.setConfirmPassword("123456");
 		form.setPassword("123456");
-		form.setEmail("lijinting01@picc.com.cn");
+		form.setEmail("lijinting01@pizzr.com.cn");
 		form.setMobile("18811111111");
 		form.setUsercode("12345687");
 		form.setUsername("lijinting01");

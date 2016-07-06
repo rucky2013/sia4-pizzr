@@ -4,12 +4,12 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>cc.picc</groupId>
-		<artifactId>sia4-pizza</artifactId>
+		<groupId>cc.pizzr</groupId>
+		<artifactId>sia4-pizzr</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>pizza-users</artifactId>
-	<name>sia4-pizza-users</name>
+	<artifactId>pizzr-users</artifactId>
+	<name>pizzr-users</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -95,14 +95,14 @@
 		</dependency>
 		<!-- 工程内的依赖关系 -->
 
+<!-- 		<dependency> -->
+<!-- 			<groupId>cc.pizzr</groupId> -->
+<!-- 			<artifactId>pizzr-users</artifactId> -->
+<!-- 			<version>1.0-SNAPSHOT</version> -->
+<!-- 		</dependency> -->
 		<dependency>
-			<groupId>cc.picc</groupId>
-			<artifactId>pizza-users</artifactId>
-			<version>1.0-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>cc.picc.commons</groupId>
-			<artifactId>pizza-commons</artifactId>
+			<groupId>cc.pizzr.commons</groupId>
+			<artifactId>pizzr-commons</artifactId>
 			<version>1.0-SNAPSHOT</version>
 		</dependency>
 		<dependency>

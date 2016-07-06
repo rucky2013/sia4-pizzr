@@ -1,4 +1,4 @@
-package cc.picc.web;
+package cc.pizzr.web;
 
 import static org.junit.Assert.assertEquals;
 

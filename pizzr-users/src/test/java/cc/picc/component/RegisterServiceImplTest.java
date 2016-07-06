@@ -1,4 +1,4 @@
-package cc.picc.component;
+package cc.pizzr.component;
 
 import static cc.pizzr.commons.CredentialType.PASSWORD;
 import static org.hamcrest.core.Is.is;

@@ -4,12 +4,12 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>cc.picc</groupId>
-		<artifactId>sia4-pizza</artifactId>
+		<groupId>cc.pizzr</groupId>
+		<artifactId>sia4-pizzr</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>semantic-plugin</artifactId>
-	<name>semantic-plugin</name>
+	<artifactId>pizzr-semantic-plugin</artifactId>
+	<name>pizzr-semantic-plugin</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

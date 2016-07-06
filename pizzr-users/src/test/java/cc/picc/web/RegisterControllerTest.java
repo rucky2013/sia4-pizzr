@@ -1,4 +1,4 @@
-package cc.picc.web;
+package cc.pizzr.web;
 
 import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.times;
@@ -56,7 +56,7 @@ public class RegisterControllerTest {
 		mockMvc.perform(
 				post("/register").param("username", "alibaba")
 						.param("usercode", "2342424234")
-						.param("email", "lijnting@picc.com.cn")
+						.param("email", "lijnting@pizzr.com.cn")
 						.param("mobile", "2342424234")
 						.param("password", "pass@word1")
 						.param("confirmPassword", "pass@word1")).andExpect(
@@ -78,7 +78,7 @@ public class RegisterControllerTest {
 		mockMvc.perform(
 				post("/register").param("username", "alibaba")
 						.param("usercode", "2342424234")
-						.param("email", "lijnting@picc.com.cn")
+						.param("email", "lijnting@pizzr.com.cn")
 						.param("mobile", "2342424234")
 						.param("password", "pass@word1")
 						.param("confirmPassword", "pass@word2")).andExpect(
