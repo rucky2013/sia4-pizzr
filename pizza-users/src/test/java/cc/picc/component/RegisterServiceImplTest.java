@@ -1,6 +1,6 @@
 package cc.picc.component;
 
-import static cc.picc.commons.CredentialType.PASSWORD;
+import static cc.pizzr.commons.CredentialType.PASSWORD;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.junit.Assert.assertThat;
@@ -20,12 +20,14 @@ import org.mockito.Spy;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import cc.picc.entity.UserBasics;
-import cc.picc.entity.UserContactInfo;
-import cc.picc.entity.UserCredential;
-import cc.picc.repository.UserBasicsRepository;
-import cc.picc.repository.UserContactInfoRepository;
-import cc.picc.repository.UserCredentialRepository;
+import cc.pizzr.component.RegisterForm;
+import cc.pizzr.component.RegisterServiceImpl;
+import cc.pizzr.entity.UserBasics;
+import cc.pizzr.entity.UserContactInfo;
+import cc.pizzr.entity.UserCredential;
+import cc.pizzr.repository.UserBasicsRepository;
+import cc.pizzr.repository.UserContactInfoRepository;
+import cc.pizzr.repository.UserCredentialRepository;
 
 @RunWith(MockitoJUnitRunner.class)
 public class RegisterServiceImplTest {

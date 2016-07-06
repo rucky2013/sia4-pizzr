@@ -16,9 +16,10 @@ import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import cc.picc.component.RegisterForm;
-import cc.picc.component.RegisterService;
-import cc.picc.entity.UserBasics;
+import cc.pizzr.component.RegisterForm;
+import cc.pizzr.component.RegisterService;
+import cc.pizzr.entity.UserBasics;
+import cc.pizzr.web.RegisterController;
 
 @RunWith(value = MockitoJUnitRunner.class)
 public class RegisterControllerTest {

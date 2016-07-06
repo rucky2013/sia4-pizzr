@@ -6,6 +6,9 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
+import cc.pizzr.commons.CredentialType;
+import cc.pizzr.commons.CredentialTypeConverter;
+
 public class CredentialTypeConverterTest {
 
 	private CredentialTypeConverter conv = new CredentialTypeConverter();

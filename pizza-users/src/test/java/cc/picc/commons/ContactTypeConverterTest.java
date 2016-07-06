@@ -6,6 +6,9 @@ import static org.junit.Assert.assertThat;
 
 import org.junit.Test;
 
+import cc.pizzr.commons.ContactType;
+import cc.pizzr.commons.ContactTypeConverter;
+
 /**
  * 
  * @author Justin
