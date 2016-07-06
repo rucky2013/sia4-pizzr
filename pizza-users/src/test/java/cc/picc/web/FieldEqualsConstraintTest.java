@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import cc.picc.validation.FieldEqualsConstraint;
+import cc.pizzr.validation.FieldEqualsConstraint;
 
 public class FieldEqualsConstraintTest {
 

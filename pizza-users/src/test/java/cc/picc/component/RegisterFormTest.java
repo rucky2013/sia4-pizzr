@@ -1,6 +1,6 @@
 package cc.picc.component;
 
-import static cc.picc.commons.CredentialType.PASSWORD;
+import static cc.pizzr.commons.CredentialType.PASSWORD;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsEqual.equalTo;
@@ -15,9 +15,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
-import cc.picc.entity.UserBasics;
-import cc.picc.entity.UserContactInfo;
-import cc.picc.entity.UserCredential;
+import cc.pizzr.component.RegisterForm;
+import cc.pizzr.entity.UserBasics;
+import cc.pizzr.entity.UserContactInfo;
+import cc.pizzr.entity.UserCredential;
 
 /**
  * 
