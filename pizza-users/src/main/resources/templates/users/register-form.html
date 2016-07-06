@@ -1,60 +1,88 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-<meta content="text/html" charset="UTF-8" />
-<title>Spring boot User Form</title>
-<link rel="stylesheet" th:href="@{/stylesheet/style.css}" />
-</head>
-<body>
-	<h2>Spring boot Users Form</h2>
-	<div th:if="${errorMessage!=null}" th:text="${errorMessage}">Error Message</div>
-	<form th:action="@{/register}" method="POST" th:object="${registerForm}">
-		<table>
-			<tbody>
-				<tr>
-					<td><label for="username">用户名:</label></td>
-					<td>
-						<input type="text" th:field="*{username}" />
-						<span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">User Error</span>
-					</td>
-					<td><label for="usercode">用户编号:</label></td>
-					<td>
-						<input type="text" th:field="*{usercode}" />
-						<span th:if="${#fields.hasErrors('usercode')}" th:errors="*{usercode}">User Error</span>
-					</td>
-				</tr>
-				<tr>
-					<td><label for="email">电子邮箱:</label></td>
-					<td>
-						<input type="text" th:field="*{email}"/>
-						<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span>
-					</td>
-					<td><label for="mobile">手机号码:</label></td>
-					<td>
-						<input type="text" th:field="*{mobile}"/>
-						<span th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}">Mobile Error</span>
-					</td>
-				</tr>
-				<tr>
-					<td><label for="password">输入密码:</label></td>
-					<td>
-						<input type="password" th:field="*{password}"/>
-						<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
-					</td>
-					<td><label for="confirmPassword">确认密码:</label></td>
-					<td>
-						<input type="password" th:field="*{confirmPassword}"/>
-						<span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">ConfirmPassword Error</span>
-					</td>
-				</tr>
-				<tr>
-					<td align="center" colspan="4">
-						<button type="submit">提交</button>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</form>
+	<meta content="text/html" charset="UTF-8" />
+	<title>注册新用户</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheet/semantic/reset.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheet/semantic/site.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheet/semantic/container.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheet/semantic/grid.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheet/semantic/header.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheet/semantic/image.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheet/semantic/menu.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheet/semantic/divider.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheet/semantic/segment.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheet/semantic/form.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheet/semantic/input.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheet/semantic/button.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheet/semantic/list.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheet/semantic/message.css}" />
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheet/semantic/icon.css}" />
 	<script th:src="@{/script/jquery.js}"></script>
+	<script th:src="@{/script/semantic/form.js}"></script>
+	<script th:src="@{/script/semantic/transition.js}"></script>
+	<style type="text/css">
+	body {
+		margin: 10%;
+	}
+	
+	body > .grid {
+		height: 100%;
+	}
+	
+	.image {
+		margin-top: -100px;
+	}
+	
+	.column {
+		max-width: 450px;
+	}
+	</style>
+</head>
+
+<body>
+	<div th:if="${errorMessage!=null}" th:text="${errorMessage}">Error Message</div>
+	<form th:action="@{/register}" method="POST" th:object="${registerForm}" class="ui form">
+		<h2>注册新用户</h2>
+		<div class="two fields">
+			<div class="seven wide field">
+				<label>用户名：</label>
+				<input type="text" th:field="*{username}" placeholder="用户名"/>
+				<span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">User Error</span>
+			</div>
+			<div class="seven wide field">
+				<label>用户编号：</label>
+				<input type="text" th:field="*{usercode}" placeholder="用户编号" />
+				<span th:if="${#fields.hasErrors('usercode')}" th:errors="*{usercode}">User Error</span>
+			</div>
+		</div>
+		<div class="two fields">
+			<div class="seven wide field">
+				<label>电子邮箱：</label>
+				<input type="text" th:field="*{email}" />
+				<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</span>
+			</div>
+			<div class="seven wide field">
+				<label>手机号码：</label>
+				<input type="text" th:field="*{mobile}" />
+				<span th:if="${#fields.hasErrors('mobile')}" th:errors="*{mobile}">Mobile Error</span>
+			</div>
+		</div>
+		<div class="two fields">
+			<div class="seven wide field">
+				<label>输入密码：</label>
+				<input type="password" th:field="*{password}" placeholder="输入密码"/>
+				<span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
+			</div>
+			<div class="seven wide field">
+				<label>确认密码：</label>
+				<input type="password" th:field="*{confirmPassword}" placeholder="确认密码"/>
+				<span th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}">ConfirmPassword Error</span>
+			</div>
+		</div>
+		<button class="ui button" type="submit">提交</button>
+	</form>
 </body>
+
 </html>
